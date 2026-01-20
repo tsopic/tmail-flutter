@@ -53,10 +53,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -127,10 +127,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 200;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -201,10 +201,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is less than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 20;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -274,14 +274,14 @@ void main() {
 
       test(
         'SHOULD calls execute the correct number of times\n'
-        'WHEN totalEmails is less than defaultMaxObjectsInSet\n'
-        'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'WHEN totalEmails is greater than defaultMaxObjectsInSet\n'
+        'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
-        const totalEmails = 30;
+        const totalEmails = 40;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
         final countIterations = (totalEmails / maxBatches).ceil();
         final aliceSession = SessionFixtures.getAliceSessionWithMaxObjectsInSet(maxObjectsInSet);
@@ -352,10 +352,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -426,10 +426,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 200;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -500,10 +500,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is less than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 20;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -573,14 +573,14 @@ void main() {
 
       test(
         'SHOULD calls execute the correct number of times\n'
-        'WHEN totalEmails is less than defaultMaxObjectsInSet\n'
-        'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'WHEN totalEmails is greater than defaultMaxObjectsInSet\n'
+        'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
-        const totalEmails = 30;
+        const totalEmails = 40;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
         final countIterations = (totalEmails / maxBatches).ceil();
         final aliceSession = SessionFixtures.getAliceSessionWithMaxObjectsInSet(maxObjectsInSet);
@@ -651,10 +651,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -706,10 +706,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 200;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -761,10 +761,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is less than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 20;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -815,14 +815,14 @@ void main() {
 
       test(
         'SHOULD calls execute the correct number of times\n'
-        'WHEN totalEmails is less than defaultMaxObjectsInSet\n'
-        'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'WHEN totalEmails is greater than defaultMaxObjectsInSet\n'
+        'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
-        const totalEmails = 30;
+        const totalEmails = 40;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
         final countIterations = (totalEmails / maxBatches).ceil();
         final aliceSession = SessionFixtures.getAliceSessionWithMaxObjectsInSet(maxObjectsInSet);
@@ -874,10 +874,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -939,10 +939,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 200;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -1004,10 +1004,10 @@ void main() {
       test(
         'SHOULD calls execute the correct number of times\n'
         'WHEN maxObjectsInSet is less than defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 20;
         const totalEmails = 100;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
@@ -1068,14 +1068,14 @@ void main() {
 
       test(
         'SHOULD calls execute the correct number of times\n'
-        'WHEN totalEmails is less than defaultMaxObjectsInSet\n'
-        'WHEN maxObjectsInSet equal defaultMaxObjectsInSet\n'
-        'AND defaultMaxObjectsInSet is 50',
+        'WHEN totalEmails is greater than defaultMaxObjectsInSet\n'
+        'WHEN maxObjectsInSet is greater than defaultMaxObjectsInSet\n'
+        'AND defaultMaxObjectsInSet is 20',
       () async {
         // Arrange
-        const defaultMaxObjectsInSet = 50;
+        const defaultMaxObjectsInSet = 20;
         const maxObjectsInSet = 50;
-        const totalEmails = 30;
+        const totalEmails = 40;
         final maxBatches = [maxObjectsInSet, defaultMaxObjectsInSet, totalEmails].min;
         final countIterations = (totalEmails / maxBatches).ceil();
         final aliceSession = SessionFixtures.getAliceSessionWithMaxObjectsInSet(maxObjectsInSet);

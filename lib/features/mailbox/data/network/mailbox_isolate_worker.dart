@@ -104,7 +104,7 @@ class MailboxIsolateWorker {
           .getAllEmail(
             args.session,
             args.accountId,
-            limit: UnsignedInt(30),
+            limit: UnsignedInt(20),
             filter: EmailFilterCondition(
                   inMailbox: args.mailboxId,
                   notKeyword: KeyWordIdentifier.emailSeen.value,
@@ -168,7 +168,7 @@ class MailboxIsolateWorker {
           .getAllEmail(
             session,
             accountId,
-            limit: UnsignedInt(30),
+            limit: UnsignedInt(20),
             filter: EmailFilterCondition(
               inMailbox: mailboxId,
               notKeyword: KeyWordIdentifier.emailSeen.value,

@@ -42,7 +42,9 @@ extension ListCapabilityIdentifierExtension on List<CapabilityIdentifier> {
 extension CapabilityIdentifierExtension on CapabilityIdentifier {
 
   static const int defaultMaxCallsInRequest = 1;
-  static const int defaultMaxObjectsInSet = 50;
+  // Reduced from 50 to 20 to be compatible with Stalwart servers
+  // which may have stricter limits than the default
+  static const int defaultMaxObjectsInSet = 20;
   static const int defaultMaxObjectsInGet = 50;
 
   bool isSupported(Session session, AccountId accountId) {
