@@ -28,6 +28,11 @@ class ManageAccountMenuController extends GetxController
   void onInit() {
     _menuItemsBuilder = AccountMenuItemsBuilder(dashBoardController);
     _registerObxStreamListener();
+    // Refresh menu items immediately if accountId is already set
+    // (the 'ever' listener only fires on changes, not for current value)
+    if (dashBoardController.accountId.value != null) {
+      _refreshMenuItems();
+    }
     super.onInit();
   }
 
