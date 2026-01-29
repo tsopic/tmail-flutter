@@ -16,8 +16,14 @@
 
         // Build the redirect URL
         let redirectUrl;
-        if (destination.includes("/login")) {
+        if (destination.includes("/dashboard")) {
+          // Already contains dashboard path, redirect to clean dashboard URL
+          // This prevents URL duplication like /dashboard?type=normal/dashboard?type=normal
+          redirectUrl = "/dashboard?type=normal";
+        } else if (destination.includes("/login")) {
           redirectUrl = destination.replace("/login", "/dashboard?type=normal");
+        } else if (destination === "/" || destination === "") {
+          redirectUrl = "/dashboard?type=normal";
         } else {
           const separator = destination.endsWith("/") ? "" : "/";
           redirectUrl = destination + separator + "dashboard?type=normal";
@@ -27,7 +33,7 @@
         location.assign(redirectUrl);
       } catch (error) {
         console.error("[Auth Redirect] Redirection failed:", error);
-        location.assign("/");
+        location.assign("/dashboard?type=normal");
       }
     };
   </script>
