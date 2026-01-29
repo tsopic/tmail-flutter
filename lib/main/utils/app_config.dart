@@ -75,4 +75,6 @@ class AppConfig {
   static bool get isCozyIntegrationEnabled => dotenv.get('COZY_INTEGRATION', fallback: 'false') == 'true';
 
   static String get cozyExternalBridgeVersion => dotenv.get('COZY_EXTERNAL_BRIDGE_VERSION', fallback: '0.16.1');
+
+  static bool get isDebugLoggingEnabled => dotenv.get('DEBUG_LOGGING', fallback: 'false') == 'true';
 }
