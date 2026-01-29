@@ -49,6 +49,15 @@ String _applyMobileFormat(Level level, String text) {
   }
 }
 
+// Global flag to enable debug logging (set via DEBUG_LOGGING env var)
+bool _debugLoggingEnabled = false;
+
+void setDebugLoggingEnabled(bool enabled) {
+  _debugLoggingEnabled = enabled;
+}
+
+bool get isDebugLoggingEnabled => _debugLoggingEnabled;
+
 void _internalLog(
   String? message, {
   required Level level,
@@ -59,7 +68,7 @@ void _internalLog(
 }) {
   final shouldPrint = webConsoleEnabled
       ? PlatformInfo.isWeb
-      : BuildUtils.isDebugMode;
+      : (BuildUtils.isDebugMode || _debugLoggingEnabled);
 
   final shouldSentry = _shouldReportToSentry(level);
 
