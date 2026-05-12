@@ -82,4 +82,50 @@ void main() {
       );
     });
   });
+
+  group('SearchQuery::toFilterTokens', () {
+    test('SHOULD return empty list WHEN query is empty', () {
+      expect(SearchQuery('').toFilterTokens(), isEmpty);
+      expect(SearchQuery('   ').toFilterTokens(), isEmpty);
+    });
+
+    test('SHOULD split unquoted words as separate filter tokens', () {
+      expect(
+        SearchQuery('portal access').toFilterTokens(),
+        equals(['portal', 'access']),
+      );
+    });
+
+    test('SHOULD preserve quotes for Stalwart exact phrase search', () {
+      expect(
+        SearchQuery('"portal access"').toFilterTokens(),
+        equals(['"portal access"']),
+      );
+    });
+
+    test('SHOULD preserve quoted phrase and split bare words', () {
+      expect(
+        SearchQuery('"portal access" denied').toFilterTokens(),
+        equals(['"portal access"', 'denied']),
+      );
+    });
+
+    test('SHOULD preserve exact phrase filter for mail content search', () {
+      expect(
+        SearchQuery('"research trial"').toFilterTokens(),
+        equals(['"research trial"']),
+      );
+    });
+
+    test('SHOULD normalize whitespace inside quoted phrase', () {
+      expect(
+        SearchQuery('"research   trial"').toFilterTokens(),
+        equals(['"research trial"']),
+      );
+    });
+
+    test('SHOULD return empty list WHEN query is only quotes', () {
+      expect(SearchQuery('""').toFilterTokens(), isEmpty);
+    });
+  });
 }

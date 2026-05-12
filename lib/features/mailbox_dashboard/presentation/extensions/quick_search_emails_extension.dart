@@ -46,7 +46,7 @@ extension QuickSearchEmailsExtension on SearchController {
 
   Filter? _mappingToFilterOnSuggestionForm({required String query, required String currentUserEmail}) {
     log('SearchController::_mappingToFilterOnSuggestionForm():query: $query');
-    final tokens = SearchQuery(query).toTokens();
+    final tokens = SearchQuery(query).toFilterTokens();
 
     final baseCondition = EmailFilterCondition(
       text: tokens.length == 1 ? tokens.first : null,

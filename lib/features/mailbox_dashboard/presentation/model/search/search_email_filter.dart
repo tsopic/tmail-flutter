@@ -111,7 +111,7 @@ class SearchEmailFilter with EquatableMixin, OptionParamMixin {
   Filter? mappingToEmailFilterCondition({
     EmailFilterCondition? moreFilterCondition
   }) {
-    final textTokens = text?.toTokens() ?? [];
+    final textTokens = text?.toFilterTokens() ?? [];
 
     final emailEmailFilterConditionShared = EmailFilterCondition(
       text: textTokens.length == 1 ? textTokens.first : null,

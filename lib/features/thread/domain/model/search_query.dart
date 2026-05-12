@@ -9,30 +9,45 @@ class SearchQuery with EquatableMixin {
     return SearchQuery('');
   }
 
-  /// Splits the query into search tokens for multi-keyword AND search.
+  /// Splits the query into display search tokens for multi-keyword AND search.
   ///
   /// Unquoted text is split by whitespace, while quoted text is kept as one
-  /// token so the backend receives phrase searches such as `research trial` as
-  /// a single text condition.
+  /// token without the surrounding quotes.
   ///
   /// Examples:
   /// - `'portal access'`          → `["portal", "access"]`
   /// - `'"portal access"'`        → `["portal access"]`
   /// - `'"portal access" denied'` → `["portal access", "denied"]`
-  List<String> toTokens() {
+  List<String> toTokens() => _parseTokens(preserveQuotedPhrase: false);
+
+  /// Splits the query into JMAP filter tokens.
+  ///
+  /// Stalwart treats a text/body search as exact phrase only when the filter
+  /// value itself starts and ends with quotes, so quoted user input keeps its
+  /// surrounding quotes for the backend request.
+  ///
+  /// Examples:
+  /// - `'portal access'`          → `["portal", "access"]`
+  /// - `'"portal access"'`        → `["\"portal access\""]`
+  /// - `'"portal access" denied'` → `["\"portal access\"", "denied"]`
+  List<String> toFilterTokens() => _parseTokens(preserveQuotedPhrase: true);
+
+  List<String> _parseTokens({required bool preserveQuotedPhrase}) {
     final query = value.trim();
     if (query.isEmpty) return [];
 
     final tokens = <String>[];
     final buffer = StringBuffer();
     var insideQuote = false;
+    var bufferIsQuoted = false;
 
     void flushBuffer() {
       final token = buffer.toString().trim().replaceAll(RegExp(r'\s+'), ' ');
       if (token.isNotEmpty) {
-        tokens.add(token);
+        tokens.add(preserveQuotedPhrase && bufferIsQuoted ? '"$token"' : token);
       }
       buffer.clear();
+      bufferIsQuoted = false;
     }
 
     for (var index = 0; index < query.length; index++) {
@@ -40,6 +55,7 @@ class SearchQuery with EquatableMixin {
       if (char == '"') {
         flushBuffer();
         insideQuote = !insideQuote;
+        bufferIsQuoted = insideQuote;
         continue;
       }
 
