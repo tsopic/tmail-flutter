@@ -218,7 +218,7 @@ void main() {
         },
       );
 
-      test('SHOULD keep quoted phrase as a single text filter', () {
+      test('SHOULD keep quoted phrase as a single Stalwart text filter', () {
         // Arrange
         final filter = SearchEmailFilter(text: SearchQuery('"portal access"'));
 
@@ -228,7 +228,7 @@ void main() {
         // Assert
         expect(result, isA<EmailFilterCondition>());
         final emailCondition = result as EmailFilterCondition;
-        expect(emailCondition.text, 'portal access');
+        expect(emailCondition.text, '"portal access"');
       });
 
       test(
@@ -253,12 +253,12 @@ void main() {
               .whereType<EmailFilterCondition>()
               .map((c) => c.text)
               .toSet();
-          expect(textValues, equals({'portal access', 'denied'}));
+          expect(textValues, equals({'"portal access"', 'denied'}));
         },
       );
 
       test(
-        'SHOULD keep quoted mail content phrase as a single text filter',
+        'SHOULD keep quoted mail content phrase as a Stalwart exact text filter',
         () {
           // Arrange
           final filter = SearchEmailFilter(
@@ -271,7 +271,7 @@ void main() {
           // Assert
           expect(result, isA<EmailFilterCondition>());
           final emailCondition = result as EmailFilterCondition;
-          expect(emailCondition.text, 'research trial');
+          expect(emailCondition.text, '"research trial"');
         },
       );
 
