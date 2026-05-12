@@ -26,31 +26,48 @@ void main() {
       );
     });
 
-    test('SHOULD split quoted phrase into individual words', () {
+    test('SHOULD preserve quoted phrase as one token', () {
       expect(
         SearchQuery('"portal access"').toTokens(),
-        equals(['portal', 'access']),
+        equals(['portal access']),
       );
     });
 
-    test('SHOULD split quoted phrase and bare words into individual tokens', () {
+    test('SHOULD preserve quoted phrase and split bare words', () {
       expect(
         SearchQuery('"portal access" denied').toTokens(),
-        equals(['portal', 'access', 'denied']),
+        equals(['portal access', 'denied']),
       );
     });
 
-    test('SHOULD split multiple quoted phrases into individual words', () {
+    test('SHOULD preserve multiple quoted phrases', () {
       expect(
         SearchQuery('"portal access" "user login"').toTokens(),
-        equals(['portal', 'access', 'user', 'login']),
+        equals(['portal access', 'user login']),
       );
     });
 
-    test('SHOULD split bare word and quoted phrase into individual tokens', () {
+    test('SHOULD split bare word and preserve quoted phrase', () {
       expect(
         SearchQuery('error "portal access"').toTokens(),
-        equals(['error', 'portal', 'access']),
+        equals(['error', 'portal access']),
+      );
+    });
+
+    test(
+      'SHOULD preserve exact phrase token for quoted mail content search',
+      () {
+        expect(
+          SearchQuery('"research trial"').toTokens(),
+          equals(['research trial']),
+        );
+      },
+    );
+
+    test('SHOULD normalize whitespace inside quoted phrase', () {
+      expect(
+        SearchQuery('"research   trial"').toTokens(),
+        equals(['research trial']),
       );
     });
 
