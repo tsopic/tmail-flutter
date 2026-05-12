@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class SearchQuery with EquatableMixin {
@@ -10,22 +9,50 @@ class SearchQuery with EquatableMixin {
     return SearchQuery('');
   }
 
-  /// Splits the query into individual word tokens for multi-keyword AND search.
+  /// Splits the query into search tokens for multi-keyword AND search.
   ///
-  /// Quotes are stripped and all words are split by whitespace. Stalwart's
-  /// default FTS backend does not support exact phrase matching — it tokenizes
-  /// multi-word text values internally and matches with OR logic. Splitting
-  /// into individual AND-combined tokens gives accurate results regardless
-  /// of server FTS implementation.
+  /// Unquoted text is split by whitespace, while quoted text is kept as one
+  /// token so the backend receives phrase searches such as `research trial` as
+  /// a single text condition.
   ///
   /// Examples:
   /// - `'portal access'`          → `["portal", "access"]`
-  /// - `'"portal access"'`        → `["portal", "access"]`
-  /// - `'"portal access" denied'` → `["portal", "access", "denied"]`
+  /// - `'"portal access"'`        → `["portal access"]`
+  /// - `'"portal access" denied'` → `["portal access", "denied"]`
   List<String> toTokens() {
-    final stripped = value.replaceAll('"', '').trim();
-    if (stripped.isEmpty) return [];
-    return stripped.split(RegExp(r'\s+'));
+    final query = value.trim();
+    if (query.isEmpty) return [];
+
+    final tokens = <String>[];
+    final buffer = StringBuffer();
+    var insideQuote = false;
+
+    void flushBuffer() {
+      final token = buffer.toString().trim().replaceAll(RegExp(r'\s+'), ' ');
+      if (token.isNotEmpty) {
+        tokens.add(token);
+      }
+      buffer.clear();
+    }
+
+    for (var index = 0; index < query.length; index++) {
+      final char = query[index];
+      if (char == '"') {
+        flushBuffer();
+        insideQuote = !insideQuote;
+        continue;
+      }
+
+      if (!insideQuote && char.trim().isEmpty) {
+        flushBuffer();
+        continue;
+      }
+
+      buffer.write(char);
+    }
+
+    flushBuffer();
+    return tokens;
   }
 
   @override
